@@ -3,6 +3,7 @@
 > Can persistent memory help detect gradual prompt injection attacks?
 
 **Author:** Leesha Mogha
+
 **Builds on:** [Prompt-Safety-Classifier](https://github.com/leeeshart/Prompt-Safety-Classifier)
 
 ---
