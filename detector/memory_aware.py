@@ -1,6 +1,5 @@
-from anthropic import Anthropic
-
-client = Anthropic()
+from groq import Groq
+client = Groq()
 
 def analyze_with_memory(turns: list) -> dict:
     """
