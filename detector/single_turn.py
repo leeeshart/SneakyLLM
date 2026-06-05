@@ -1,3 +1,4 @@
+import json
 from groq import Groq
 client = Groq()
 
@@ -6,10 +7,13 @@ def analyze_single_turn(prompt: str) -> dict:
     Baseline detector — evaluates only the current message.
     No memory of previous turns.
     """
-    response = client.messages.create(
-        model="claude-sonnet-4-20250514",
+    response = client.chat.completions.create(
+        model="llama-3.3-70b-versatile",
         max_tokens=200,
-        system="""You are a prompt safety classifier.
+        messages=[
+            {
+                "role": "system",
+                "content": """You are a prompt safety classifier.
 Analyze the given message and return a JSON response only.
 No explanation, no markdown, just JSON.
 
@@ -20,16 +24,22 @@ Format:
   "reason": "one sentence explanation"
 }
 
-Risk score: 0.0 = completely safe, 1.0 = clearly harmful.""",
-        messages=[
+Risk score: 0.0 = completely safe, 1.0 = clearly harmful."""
+            },
             {"role": "user", "content": f"Classify this prompt: {prompt}"}
         ]
     )
 
-    import json
     try:
-        result = json.loads(response.content[0].text)
-    except:
+        choices = getattr(response, "choices", None)
+        if not choices or len(choices) == 0:
+            raise ValueError("Invalid response structure: missing or empty choices array")
+        message = getattr(choices[0], "message", None)
+        content = getattr(message, "content", None)
+        if content is None:
+            raise ValueError("Invalid response structure: missing message content")
+        result = json.loads(content)
+    except (json.JSONDecodeError, AttributeError, TypeError, ValueError):
         result = {
             "risk_score": 0.0,
             "classification": "safe",
