@@ -18,5 +18,5 @@
         "additional_attacks_caught": 1,
         "detection_rate_increase": "80% \u2192 90%"
     },
-    "key_finding": "Memory-aware"
+    "key_finding": "Memory-aware detection improved attack detection from 80% to 90% while maintaining 100% benign accuracy, suggesting that conversational context reveals manipulation patterns that single-turn detectors miss entirely."
 }
