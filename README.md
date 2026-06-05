@@ -153,8 +153,8 @@ Within this small benchmark, conversational memory improved detection of gradual
 SneakyLLM/
 ├── datasets/        # gradual attack sequences
 ├── detector/          # baseline and memory-aware detector
-├── notebooks/       # notebooks and results
-├── app/               # demo interface
+├── notebooks/        # notebooks and results
+├── app/              # demo interface
 ├── images/
 ├── requirements.txt
 ├── .gitignore
