@@ -146,23 +146,37 @@ if analyze_button:
 
         col1, col2 = st.columns(2)
 
-        with col1:
-            st.markdown("#### Single-Turn Detector")
-            st.markdown("*Sees only the last message*")
-            st.markdown("**Last message analyzed:**")
-            st.info(turns[-1])
-            st.markdown(f"**Classification:** `{single_result['classification'].upper()}`")
-            st.markdown(f"**Risk Score:** `{single_result['risk_score']}`")
-            st.markdown(f"**Reason:** {single_result['reason']}")
+with col1:
+    st.markdown("#### Single-Turn Detector")
+    st.markdown("*Sees only the last message*")
+    st.markdown("**Last message analyzed:**")
+    st.info(turns[-1])
+    
+    if single_result['classification'] == 'unsafe':
+        st.error(f"Classification: UNSAFE")
+    elif single_result['classification'] == 'suspicious':
+        st.warning(f"Classification: SUSPICIOUS")
+    else:
+        st.success(f"Classification: SAFE")
+    
+    st.markdown(f"**Risk Score:** `{single_result['risk_score']}`")
+    st.markdown(f"**Reason:** {single_result['reason']}")
 
-        with col2:
-            st.markdown("#### Memory-Aware Detector")
-            st.markdown("*Sees the full conversation*")
-            st.markdown(f"**Turns analyzed:** `{len(turns)}`")
-            st.markdown(f"**Classification:** `{memory_result['classification'].upper()}`")
-            st.markdown(f"**Risk Score:** `{memory_result['risk_score']}`")
-            st.markdown(f"**Reason:** {memory_result['reason']}")
-            st.markdown(f"**Pattern Detected:** `{memory_result.get('pattern_detected', 'none')}`")
+with col2:
+    st.markdown("#### Memory-Aware Detector")
+    st.markdown("*Sees the full conversation*")
+    st.markdown(f"**Turns analyzed:** `{len(turns)}`")
+    
+    if memory_result['classification'] == 'unsafe':
+        st.error(f"Classification: UNSAFE")
+    elif memory_result['classification'] == 'suspicious':
+        st.warning(f"Classification: SUSPICIOUS")
+    else:
+        st.success(f"Classification: SAFE")
+    
+    st.markdown(f"**Risk Score:** `{memory_result['risk_score']}`")
+    st.markdown(f"**Reason:** {memory_result['reason']}")
+    st.markdown(f"**Pattern Detected:** `{memory_result.get('pattern_detected', 'none')}`")
 
         # Key insight callout
         st.markdown("---")
