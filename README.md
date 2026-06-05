@@ -130,9 +130,9 @@ SneakyLLM/
 ## Getting Started
 
 ```bash
-pip install -r requirements.txt
 streamlit run app/app.py
 ```
+Get a free Groq API key at https://console.groq.com and paste it in the sidebar.
 
 ---
 
