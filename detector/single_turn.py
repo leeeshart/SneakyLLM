@@ -39,7 +39,7 @@ Risk score: 0.0 = completely safe, 1.0 = clearly harmful."""
         if content is None:
             raise ValueError("Invalid response structure: missing message content")
         result = json.loads(content)
-    except (json.JSONDecodeError, AttributeError, IndexError, TypeError, ValueError):
+    except (json.JSONDecodeError, AttributeError, TypeError, ValueError):
         result = {
             "risk_score": 0.0,
             "classification": "safe",
