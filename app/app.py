@@ -3,6 +3,12 @@ from groq import Groq
 import json
 import os
 
+# Page config
+st.set_page_config(
+    page_title="SneakyLLM",
+    layout="wide"
+)
+
 # Setup
 with st.sidebar:
     st.markdown("### Configuration")
@@ -14,12 +20,6 @@ if not api_key:
     st.stop()
 
 client = Groq(api_key=api_key)
-
-# Page config
-st.set_page_config(
-    page_title="SneakyLLM",
-    layout="wide"
-)
 
 # Title
 st.title("SneakyLLM")
