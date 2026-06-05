@@ -95,9 +95,9 @@ Attack pattern taxonomy based on:
 
 ### Main Result
 
-Memory-aware detection improved attack detection from **80% to 90%** while maintaining **100% benign accuracy** on the evaluation benchmark.
+> Memory-aware detection improved attack detection from **80% to 90%** while maintaining **100% benign accuracy** on the evaluation benchmark.
 
-This suggests that conversational context can reveal manipulation patterns that single-turn detectors miss entirely.
+> This suggests that conversational context can reveal manipulation patterns that single-turn detectors miss entirely. 
 
 Experiment run on 20 sequences — 10 gradual attacks, 10 benign conversations.
 
@@ -111,6 +111,8 @@ Experiment run on 20 sequences — 10 gradual attacks, 10 benign conversations.
 A second sequence (authority framing) moved from missed to suspicious with memory context, showing partial improvement.
 
 Zero false positives on benign conversations — both detectors correctly classified all safe sequences.
+
+---
 
 ### Key Finding
 
