@@ -11,7 +11,7 @@ def analyze_with_memory(turns: list) -> dict:
         conversation_text += f"Turn {i}: {turn}\n"
 
     response = client.chat.completions.create(
-        model="claude-sonnet-4-20250514",
+        model="llama-3.3-70b-versatile",
         max_tokens=300,
         messages=[
             {

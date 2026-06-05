@@ -7,7 +7,7 @@ def analyze_single_turn(prompt: str) -> dict:
     No memory of previous turns.
     """
     response = client.chat.completions.create(
-        model="claude-sonnet-4-20250514",
+        model="llama-3.3-70b-versatile",
         max_tokens=200,
         messages=[
             {
