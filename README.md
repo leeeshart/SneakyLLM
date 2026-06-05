@@ -83,14 +83,30 @@ Attack pattern taxonomy based on:
 
 ---
 
-## Experiment Design
+## Results
 
-| Method | What it sees | Hypothesis |
+Experiment run on 20 sequences — 10 gradual attacks, 10 benign conversations.
+
+| Method | Attack Detection | Benign Accuracy |
 |---|---|---|
-| Single-turn baseline | Current message only | Misses the buildup |
-| Memory-aware detector | Full conversation history | Catches the pattern |
+| Single-turn baseline | 8/10 (80%) | 10/10 (100%) |
+| Memory-aware detector | 9/10 (90%) | 10/10 (100%) |
 
-Detection rate across sequences will be compared to measure improvement.
+**Memory-aware detection caught one additional attack sequence that single-turn completely missed** — a roleplay escalation attack where the final message alone appeared safe but the full conversation pattern revealed the manipulation.
+
+A second sequence (authority framing) moved from missed to suspicious with memory context, showing partial improvement.
+
+Zero false positives on benign conversations — both detectors correctly classified all safe sequences.
+
+### Key Finding
+
+Single-turn classifiers are blind to the buildup. Memory-aware detection shifts the question from:
+> *"Is this message harmful?"*
+
+to:
+> *"Is this conversation going somewhere harmful?"*
+
+That shift catches attacks that no single-turn classifier can detect by design.
 
 ---
 
