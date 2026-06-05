@@ -46,7 +46,7 @@ analyze_button = st.button("Analyze", type="primary")
 # Detector functions
 def analyze_single_turn(prompt: str) -> dict:
     response = client.chat.completions.create(
-        model="llama3-8b-8192",
+        model="llama-3.3-70b-versatile",
         max_tokens=200,
         messages=[
             {
@@ -82,7 +82,7 @@ def analyze_with_memory(turns: list) -> dict:
         conversation_text += f"Turn {i}: {turn}\n"
 
     response = client.chat.completions.create(
-        model="llama3-8b-8192",
+        model="llama-3.3-70b-versatile",
         max_tokens=300,
         messages=[
             {
