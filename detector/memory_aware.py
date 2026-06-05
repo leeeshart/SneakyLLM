@@ -1,3 +1,4 @@
+import json
 from groq import Groq
 client = Groq()
 
@@ -44,7 +45,6 @@ Risk score: 0.0 = completely safe, 1.0 = clearly harmful."""
         ]
     )
 
-    import json
     try:
         result = json.loads(response.choices[0].message.content)
     except:
