@@ -46,8 +46,11 @@ Risk score: 0.0 = completely safe, 1.0 = clearly harmful."""
     )
 
     try:
-        result = json.loads(response.choices[0].message.content)
-    except (json.JSONDecodeError, AttributeError, IndexError, TypeError):
+        choices = getattr(response, "choices", None)
+        if not choices:
+            raise ValueError("No response choices returned")
+        result = json.loads(choices[0].message.content)
+    except (json.JSONDecodeError, AttributeError, IndexError, TypeError, ValueError):
         result = {
             "risk_score": 0.0,
             "classification": "safe",
