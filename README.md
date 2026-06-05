@@ -166,16 +166,30 @@ SneakyLLM/
 
 ## Getting Started
 
+**Requirements:** Python 3.11+
+
 ```bash
+git clone https://github.com/leeeshart/SneakyLLM
+cd SneakyLLM
+pip install -r requirements.txt
 streamlit run app/app.py
 ```
-Get a free Groq API key at https://console.groq.com and paste it in the sidebar.
+
+Paste your free Groq API key in the sidebar when the app opens.
+Get one at https://console.groq.com — no credit card needed.
+
+**To run detectors directly:**
+```bash
+export GROQ_API_KEY=your_key_here
+python detector/single_turn.py
+python detector/memory_aware.py
+```
 
 ---
 
 ## Live Demo
 
-Try it: https://sneakyllm.streamlit.app
+**Try it:** https://sneakyllm.streamlit.app
 
 **What to notice:**
 Both detectors may agree on classification — but memory-aware 
@@ -188,6 +202,8 @@ pattern across 5 turns"
 
 That distinction matters for explainability in real safety systems.
 
+
+![SneakyLLM Demo Result](https://raw.githubusercontent.com/leeeshart/SneakyLLM/main/images/screenshot0.png)
 
 ![SneakyLLM Demo Conversation](https://raw.githubusercontent.com/leeeshart/SneakyLLM/main/images/screenshot1.png)
 
