@@ -4,7 +4,16 @@ import json
 import os
 
 # Setup
-client = Groq(api_key=st.secrets["GROQ_API_KEY"])
+with st.sidebar:
+    st.markdown("### Configuration")
+    api_key = st.text_input("Groq API Key", type="password", placeholder="gsk_...")
+    st.markdown("[Get a free key →](https://console.groq.com)")
+
+if not api_key:
+    st.warning("Add your Groq API key in the sidebar to get started.")
+    st.stop()
+
+client = Groq(api_key=api_key)
 
 # Page config
 st.set_page_config(
