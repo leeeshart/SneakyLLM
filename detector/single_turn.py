@@ -32,9 +32,13 @@ Risk score: 0.0 = completely safe, 1.0 = clearly harmful."""
 
     try:
         choices = getattr(response, "choices", None)
-        if not choices:
-            raise ValueError("No response choices returned")
-        result = json.loads(choices[0].message.content)
+        if not choices or len(choices) == 0:
+            raise ValueError("Invalid response structure: missing or empty choices array")
+        message = getattr(choices[0], "message", None)
+        content = getattr(message, "content", None)
+        if content is None:
+            raise ValueError("Invalid response structure: missing message content")
+        result = json.loads(content)
     except (json.JSONDecodeError, AttributeError, IndexError, TypeError, ValueError):
         result = {
             "risk_score": 0.0,
