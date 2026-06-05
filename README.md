@@ -114,10 +114,14 @@ That shift catches attacks that no single-turn classifier can detect by design.
 
 ```bash
 SneakyLLM/
-├── datasets/          # gradual attack sequences
+├── datasets/        # gradual attack sequences
 ├── detector/          # baseline and memory-aware detector
 ├── notebooks/       # notebooks and results
 ├── app/               # demo interface
+├── images/
+├── requirements.txt
+├── .gitignire
+├── LICENSE             
 └── README.md
 ```
 
@@ -148,6 +152,9 @@ pattern across 5 turns"
 That distinction matters for explainability in real safety systems.
 
 
+![SneakyLLM Demo Conversation](https://github.com/leeeshart/SneakyLLM/blob/main/images/screenshot1.png)
+
+![SneakyLLM Demo Result](https://github.com/leeeshart/SneakyLLM/blob/main/images/screenshot2.png)
 
 ---
 
@@ -159,5 +166,6 @@ MIT — see LICENSE file.
 
 ## Contact
 
-**Email:** leeshamogha7@gmail.com
+**Email:** leeshamogha7@gmail.com 
+
 **LinkedIn:** [leeshamogha](https://www.linkedin.com/in/leeshamogha)
