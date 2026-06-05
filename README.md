@@ -116,7 +116,7 @@ That shift catches attacks that no single-turn classifier can detect by design.
 SneakyLLM/
 ├── datasets/          # gradual attack sequences
 ├── detector/          # baseline and memory-aware detector
-├── experiments/       # notebooks and results
+├── notebooks/       # notebooks and results
 ├── app/               # demo interface
 └── README.md
 ```
@@ -132,9 +132,22 @@ streamlit run app/app.py
 
 ---
 
-## Status
+## Live Demo
 
-Research in progress — built for the Elite Coders Open Source Hackathon 2026.
+Try it: https://sneakyllm.streamlit.app
+
+**What to notice:**
+Both detectors may agree on classification — but memory-aware 
+detection tells you *why* the conversation is dangerous, not just 
+that the last message is harmful.
+
+Single-turn: "This message seeks harmful information"  
+Memory-aware: "Conversation escalates gradually using trust-building 
+pattern across 5 turns"
+
+That distinction matters for explainability in real safety systems.
+
+
 
 ---
 
