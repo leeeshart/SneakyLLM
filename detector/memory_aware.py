@@ -47,7 +47,7 @@ Risk score: 0.0 = completely safe, 1.0 = clearly harmful."""
 
     try:
         result = json.loads(response.choices[0].message.content)
-    except:
+    except (json.JSONDecodeError, AttributeError, IndexError, TypeError):
         result = {
             "risk_score": 0.0,
             "classification": "safe",
