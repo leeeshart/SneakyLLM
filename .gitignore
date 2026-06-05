@@ -33,5 +33,3 @@ Thumbs.db
 .vscode/
 .idea/
 
-# Data files (optional — remove if you want CSVs tracked)
-*.csv
