@@ -6,10 +6,13 @@ def analyze_single_turn(prompt: str) -> dict:
     Baseline detector — evaluates only the current message.
     No memory of previous turns.
     """
-    response = client.messages.create(
+    response = client.chat.completions.create(
         model="claude-sonnet-4-20250514",
         max_tokens=200,
-        system="""You are a prompt safety classifier.
+        messages=[
+            {
+                "role": "system",
+                "content": """You are a prompt safety classifier.
 Analyze the given message and return a JSON response only.
 No explanation, no markdown, just JSON.
 
@@ -20,15 +23,15 @@ Format:
   "reason": "one sentence explanation"
 }
 
-Risk score: 0.0 = completely safe, 1.0 = clearly harmful.""",
-        messages=[
+Risk score: 0.0 = completely safe, 1.0 = clearly harmful."""
+            },
             {"role": "user", "content": f"Classify this prompt: {prompt}"}
         ]
     )
 
     import json
     try:
-        result = json.loads(response.content[0].text)
+        result = json.loads(response.choices[0].message.content)
     except:
         result = {
             "risk_score": 0.0,
