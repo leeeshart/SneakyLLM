@@ -207,7 +207,7 @@ That distinction matters for explainability in real safety systems.
 
 ![SneakyLLM Demo Conversation](https://raw.githubusercontent.com/leeeshart/SneakyLLM/main/images/screenshot1.png)
 
-![SneakyLLM Demo Result](https://raw.githubusercontent.com/leeeshart/SneakyLLM/main/images/screenshot2.png)
+![SneakyLLM Demo Result](https://raw.githubusercontent.com/leeeshart/SneakyLLM/main/images/screenshot3.png)
 
 ---
 
