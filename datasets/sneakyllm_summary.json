@@ -1,0 +1,22 @@
+{
+    "total_sequences": 20,
+    "attack_sequences": 10,
+    "benign_sequences": 10,
+    "single_turn": {
+        "attack_detection_rate": 0.8,
+        "attack_detected": 8,
+        "benign_accuracy": 1.0,
+        "benign_correct": 10
+    },
+    "memory_aware": {
+        "attack_detection_rate": 0.9,
+        "attack_detected": 9,
+        "benign_accuracy": 1.0,
+        "benign_correct": 10
+    },
+    "improvement": {
+        "additional_attacks_caught": 1,
+        "detection_rate_increase": "80% \u2192 90%"
+    },
+    "key_finding": "Memory-aware"
+}
