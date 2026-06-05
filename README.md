@@ -27,9 +27,7 @@ Turn 5 → manipulation
 Turn 6 → jailbreak
 ```
 
-Each individual message may look completely safe. The pattern is dangerous.
-
-This is a gradual prompt injection attack and single-turn detectors miss it entirely.
+This is the core challenge of gradual prompt injection attacks: individual messages may appear safe even when the overall conversation is becoming dangerous.
 
 ---
 
@@ -45,6 +43,16 @@ A memory-aware detector that evaluates full conversation history will catch sign
 
 ---
 
+## Why Memory?
+
+Traditional prompt safety systems evaluate each message independently.
+
+Memory-aware detection instead analyzes how a conversation evolves over time, allowing it to identify patterns such as trust-building, roleplay escalation, authority framing, and gradual steering that may appear harmless in isolation but become suspicious when viewed across multiple turns.
+
+The goal is not simply to classify messages, but to understand conversational intent.
+
+---
+
 ## How this connects to previous work
 
 This project is a direct continuation of Prompt-Safety-Classifier, which documented three versions of a prompt safety classifier and one important finding: **data quality and problem framing matter more than model sophistication.**
@@ -54,7 +62,7 @@ This project is a direct continuation of Prompt-Safety-Classifier, which documen
 | v1 | Baseline TF-IDF classifier | 52% recall — accuracy was misleading |
 | v2 | Added intent features + embeddings | 87.1% recall — best single-turn model |
 | v3 | Transformer experiment | Failed — wrong training distribution |
-| **SneakyLLM** | Memory-aware multi-turn detection | In progress |
+| **SneakyLLM** | Memory-aware multi-turn detection | Memory improved detection from 80% → 90% |
 
 The single-turn ceiling identified in v1–v3 is the direct motivation for this project.
 
@@ -85,6 +93,12 @@ Attack pattern taxonomy based on:
 
 ## Results
 
+### Main Result
+
+Memory-aware detection improved attack detection from **80% to 90%** while maintaining **100% benign accuracy** on the evaluation benchmark.
+
+This suggests that conversational context can reveal manipulation patterns that single-turn detectors miss entirely.
+
 Experiment run on 20 sequences — 10 gradual attacks, 10 benign conversations.
 
 | Method | Attack Detection | Benign Accuracy |
@@ -110,6 +124,27 @@ That shift catches attacks that no single-turn classifier can detect by design.
 
 ---
 
+### Limitations
+
+This project is an exploratory research prototype and the results should be interpreted accordingly.
+
+Current limitations include:
+
+- Small benchmark size (20 sequences)
+- Synthetic conversations rather than real-world attack data
+- Limited attack taxonomy coverage
+- Results require validation on larger datasets
+
+Future work includes expanding the benchmark, evaluating against real-world jailbreak datasets, and exploring learned memory representations for conversational analysis.
+
+---
+
+### Conclusion
+
+Within this small benchmark, conversational memory improved detection of gradual prompt injection attacks without introducing false positives, suggesting that context-aware safety systems may be better suited for multi-turn manipulation than traditional single-turn approaches.
+
+---
+
 ## Repository Structure
 
 ```bash
@@ -120,7 +155,7 @@ SneakyLLM/
 ├── app/               # demo interface
 ├── images/
 ├── requirements.txt
-├── .gitignire
+├── .gitignore
 ├── LICENSE             
 └── README.md
 ```
